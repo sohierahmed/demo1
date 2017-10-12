@@ -20,6 +20,7 @@ public class DBAdapter extends CursorAdapter {
     public DBAdapter(Context con, Cursor curs, int flag)
 
     {
+        //this is change ...just to test
         super(con, curs, flag);
         myCon = con;
         mFlag=flag;
