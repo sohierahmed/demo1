@@ -21,6 +21,7 @@ public class DBAdapter extends CursorAdapter {
 
     {
         //this is change ...just to test
+        //this is the second change for test
         super(con, curs, flag);
         myCon = con;
         mFlag=flag;
