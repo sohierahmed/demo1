@@ -10,9 +10,9 @@ public class Contract {
     //جدول الاستمارات
     public static  final class formEntry implements BaseColumns
     {
-        public static  final String TABLE_NAME="Forms";
-        public static  final String  COL_FORM_CODE="form_code";
-        public static  final String  COL_FORM_NAME="form_name";
+            public static  final String TABLE_NAME="Forms";
+             public static  final String  COL_FORM_CODE="form_code";
+               public static  final String  COL_FORM_NAME="form_name";
     }
 
     //جدول النماذج
