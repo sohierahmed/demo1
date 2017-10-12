@@ -29,6 +29,7 @@ public class Contract {
     //جدول المجموعة السلعية
     public static  final class variety_groupEntry implements BaseColumns
     {
+        //table vaeiety_group
         public static  final String TABLE_NAME="Variety_group";
         public static  final String  COL_VARIETY_GROUP_CODE="variety_group_code";
         public static  final String  COL_VARIETY_GROUP_NAME="variety_group_name";
