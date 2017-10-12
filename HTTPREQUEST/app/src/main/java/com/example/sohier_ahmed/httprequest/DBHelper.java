@@ -31,10 +31,7 @@ public class DBHelper extends SQLiteOpenHelper {
 private SQLiteDatabase db;
     public DBHelper(Context context) {
        super(context, db_name, null,db_version);
-    /*super(context,  Environment.getExternalStorageDirectory()
-                + File.separator + FILE_DIR
-                + File.separator + DATABASE_NAME,null,db_version);*/
-        db_path="/data/data/"+ context.getPackageName()+"/databases/"+db_name;
+      db_path="/data/data/"+ context.getPackageName()+"/databases/"+db_name;
 
         con=context;
     }
@@ -42,28 +39,23 @@ private SQLiteDatabase db;
     public   void CreateDB()
     {
         boolean ifDBExists = CheckIfDBExists();
-  //Toast.makeText(con,"CheckIfDBExists "+ifDBExists,Toast.LENGTH_LONG).show();
+
         if (!ifDBExists)
         {
-            //Toast.makeText(con,"inside ifDBExists ",Toast.LENGTH_LONG).show();
-            this.getReadableDatabase();
-         /*   Toast.makeText(con,"version"+   this.getReadableDatabase().getVersion(),Toast.LENGTH_LONG).show();*/
-
-            CopyDB();
+           this.getReadableDatabase();
+           CopyDB();
         }
-      /*  else
-            Toast.makeText(con,"version"+   this.getReadableDatabase().getVersion(),Toast.LENGTH_LONG).show();*/
+
     }
 
     private boolean CheckIfDBExists()
     {
         try {
-          //  Toast.makeText(con,"db_path "+db_path,Toast.LENGTH_LONG).show();
+
             SQLiteDatabase db2=  SQLiteDatabase.openDatabase(db_path,null,SQLiteDatabase.OPEN_READONLY);
 
             if (db2 !=null)
             {
-               // Toast.makeText(con,"CheckIfDBExists version"+   db.getVersion(),Toast.LENGTH_LONG).show();
                 db2.close();
                 return true;
             }
@@ -80,12 +72,9 @@ return false;
     {
         try {
             InputStream inputStream = con.getAssets().open(db_name);
-           // Toast.makeText(con,"copy db "+db_name,Toast.LENGTH_LONG).show();
-            OutputStream outputStream =new FileOutputStream(db_path);
-          //  Toast.makeText(con,"copy db "+db_path,Toast.LENGTH_LONG).show();
+             OutputStream outputStream =new FileOutputStream(db_path);
             byte[]buffer=new byte[10];
-           // int length=inputStream.read(buffer);
-            int length;
+             int length;
             while ((length = inputStream.read(buffer))>0){
                 outputStream.write(buffer, 0, length);
             }
@@ -120,20 +109,12 @@ return false;
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int old_version, int new_version) {
-      /*  Toast.makeText(con,"old_version "+old_version,Toast.LENGTH_LONG).show();
-        Toast.makeText(con,"new_version "+new_version,Toast.LENGTH_LONG).show();*/
+
         if (new_version>old_version)
             CopyDB();
     }
 
-   /* public Cursor CreateQuery(String tbl_name , String[] colms,String sel,String[] selArgs,String groupby , String having,String orderby)
-    {
 
-        Toast.makeText(con,"here in CreateQuery  ",Toast.LENGTH_LONG).show();
-       return   db.rawQuery("select * from Forms",null);
-
-
-    }*/
    public  Cursor GetSheetNames()
    {
        return DBOperations.GetSheetNames(db,con);
